@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { BrowserRouter as Router,NavLink,Switch,Route } from 'react-router-dom';
+import {Button} from "react-bootstrap";
 import Home from "./Home";
 import KidsPage from "./KidsPage";
 import MenPage from "./MenPage";
@@ -10,7 +11,7 @@ export default class Navigation extends Component {
     render() {
         return (
             <Router>
-                <Navbar bg="light" expand="lg" sticky="top">
+                <Navbar style={{margin:0}} bg="light" expand="lg" sticky="top">
                     <Navbar.Brand href="#home">Clothing Shop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">

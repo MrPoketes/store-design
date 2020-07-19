@@ -1,4 +1,7 @@
 .App {
-  margin-top:1%;
   text-align: center;
+}
+.line{
+  width:25%;
+  border-top:1px solid black;
 }
