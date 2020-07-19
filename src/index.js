@@ -7,6 +7,8 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 
 ReactDOM.render(
-  <Navigation/>,
+  <div>
+    <Navigation/>
+  </div>,
   document.getElementById('root')
 );
