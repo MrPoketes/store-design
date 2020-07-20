@@ -24,13 +24,19 @@ export default class Home extends Component {
             <ProductShowcase image={new1} description={"Black Top"} price={"75"} />
             <ProductShowcase image={new2} description={"Sunglasses"} price={"50"} />
             <ProductShowcase image={new3} description={"Cyan Hoodie"} price={"65"} />
-            <ProductShowcase image={new4} description={"Wristwatch"} price={"100"} />
+            <ProductShowcase image={new4} description={"Black Hoodie"} price={"100"} />
           </div>
         </div>
         {/* Most popular section */}
         <div>
-          <h2>New Releases</h2>
+          <h2>Most Popular</h2>
           <hr className="line" />
+          <div>
+            <ProductShowcase image={new1} description={"Black Top"} price={"75"} />
+            <ProductShowcase image={new2} description={"Sunglasses"} price={"50"} />
+            <ProductShowcase image={new3} description={"Cyan Hoodie"} price={"65"} />
+            <ProductShowcase image={new4} description={"Black Hoodie"} price={"100"} />
+          </div>
         </div>
       </div>
     );
