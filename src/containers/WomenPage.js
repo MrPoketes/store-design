@@ -11,7 +11,7 @@ export default class WomenPage extends Component{
     render(){
         return (
             <div className="App">
-                <Container style={{marginTop:"2%"}} fluid>
+                <Container style={{ marginTop:"2%"}} fluid>
                     <Row>
                         <Col sm={2}>
                             <SideMenu/>
