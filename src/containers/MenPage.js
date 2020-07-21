@@ -12,10 +12,10 @@ export default class MenPage extends Component {
     render() {
         return (
             <div className="App">
-                <Container style={{marginTop:"2%"}} fluid>
+                <Container style={{ marginTop: "2%" }} fluid>
                     <Row>
                         <Col sm={2}>
-                            <SideMenu/>
+                            <SideMenu />
                         </Col>
                         <Col>
                             <div>
