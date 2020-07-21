@@ -2,31 +2,53 @@ import React, { Component } from "react";
 import "../css/styles.css";
 import { Container, Row, Col } from "react-bootstrap";
 import ProductShowcase from "../components/ProductShowcase";
-import menshoodie1 from "../images/mens/mens-hoodie1.jpg";
-import mensjacket1 from "../images/mens/mens-jacket1.jpg";
-import mensshirt1 from "../images/mens/mens-shirt1.jpg";
-import menssuit1 from "../images/mens/mens-suit1.jpg";
-
+import { connect } from "react-redux";
 import SideMenu from "../components/SideMenu";
-export default class MenPage extends Component {
+import { fetchByGender, fetchCategories } from "../actions";
+
+class MenPage extends Component {
+    async componentDidMount() {
+        await this.props.fetchByGender("men");
+        await this.props.fetchCategories("men");
+    }
     render() {
         return (
             <div className="App">
                 <Container style={{ marginTop: "2%" }} fluid>
                     <Row>
                         <Col sm={2}>
-                            <SideMenu />
+                            {this.props.categories ?
+                            <div>
+                                <SideMenu categories={this.props.categories} />
+                            </div>
+                            :<div></div>
+                        }
                         </Col>
                         <Col>
-                            <div>
-                                <ProductShowcase image={menshoodie1} description={"Black Hoodie"} price={"100"} />
-                                <ProductShowcase image={mensjacket1} description={"Jacket"} price={"70"} />
-                                <ProductShowcase image={mensshirt1} description={"Denim Shirt"} price={"30"} />
-                                <ProductShowcase image={menssuit1} description={"Black Suit"} price={"120"} />
-                            </div></Col>
+                            {this.props.menProducts ?
+                                <div>
+                                    {this.props.menProducts.map((data, i) =>
+                                        <ProductShowcase key={i} id={data._id} name={data.name} price={data.price} image={data.image} />
+                                    )}
+                                </div>
+                                : <div></div>
+
+                            }
+                        </Col>
                     </Row>
                 </Container>
             </div>
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        menProducts: state.products.genderProducts,
+        categories: state.products.categories,
+    }
+}
+const mapDispatchToProps = {
+    fetchByGender,
+    fetchCategories,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MenPage);

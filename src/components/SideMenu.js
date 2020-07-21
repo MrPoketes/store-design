@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../css/styles.css";
 import {Form} from "react-bootstrap";
+
 export default class SideMenu extends Component{
     render(){
         return (
@@ -11,10 +12,9 @@ export default class SideMenu extends Component{
                     <hr className="side-line" />
                     {/* Checkboxes */}
                     <Form style={{marginLeft:"5%",textAlign:"left"}}>
-                        <Form.Check label="Suits"/>
-                        <Form.Check label="Jackets"/>
-                        <Form.Check label="Hoodies"/>
-                        <Form.Check label="Shirts"/>
+                        {this.props.categories.map((data,i)=>
+                            <Form.Check key={i} label={data}/>
+                        )}
                     </Form>
                 </div>
                 {/* Price */}

@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import '../css/styles.css';
 import ImageShowcase from "../components/ImageShowcase";
 import ProductShowcase from "../components/ProductShowcase";
-import { fetchProducts, fetchNewProducts } from "../actions";
+import { fetchNewProducts } from "../actions";
 import { connect } from "react-redux";
 
 class Home extends Component {
   async componentDidMount() {
     await this.props.fetchNewProducts();
-    // await this.props.fetchProducts();
   }
   render() {
     return (
       <div className="App">
-        {/* The carousel */}
+        {/* The carousel  TODO : add the images for the carousel to a database*/}
         <div>
           <ImageShowcase />
         </div>
@@ -21,7 +20,6 @@ class Home extends Component {
         <div style={{ marginTop: "2%" }}>
           <h2>New Releases</h2>
           <hr className="line" />
-          {/* After I implement backend, all of this info will be fetched from a database and then maped to ProductShowcase component */}
           {this.props.newProducts !== null ?
             <div>
               {this.props.newProducts.map((data, i) =>
@@ -52,7 +50,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    newProducts: state.products.newProducts
+    newProducts: state.products.newProducts,
   }
 };
 const mapDispatchToProps = {
