@@ -3,6 +3,7 @@ const initialState = {
     newProducts: null,
     categories: null,
     genderProducts: null,
+    product: null,
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -26,6 +27,16 @@ const productsReducer = (state = initialState, action) => {
             return{
                 ...state,
                 genderProducts: action.payload
+            }
+        case "FETCH_PRODUCT_BY_ID":
+            return{
+                ...state,
+                product: action.payload
+            }
+        case "UNMOUNT_PRODUCT_BY_ID":
+            return{
+                ...state,
+                product: null
             }
         default:
             return state

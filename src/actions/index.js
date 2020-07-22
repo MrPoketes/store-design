@@ -35,3 +35,18 @@ export const fetchByGender = (gender) => (dispatch) =>{
                 payload:data
             }))
 }
+export const fetchProductById = (id) => (dispatch) =>{
+    fetch(`http://localhost:8081/api/products/${id}`)
+        .then(res => res.json())
+        .then(data => 
+            dispatch({
+                type: "FETCH_PRODUCT_BY_ID",
+                payload:data
+            }))
+}
+// For unmounting 
+export const unmountProductById = () => (dispatch) =>{
+    dispatch({
+        type: "UNMOUNT_PRODUCT_BY_ID",
+    })
+}

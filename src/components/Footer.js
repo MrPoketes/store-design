@@ -16,7 +16,7 @@ const Footer = () => {
                             <h5 className="title">Contacts</h5>
                             <ul>
                                 <li className="list-unstyled">
-                                    <h6><a href="https://github.com/MrPoketes">Github</a></h6>
+                                    <h6><a href="https://github.com/MrPoketes"><i className="fab fa-github"></i> Github</a></h6>
                                 </li>
                                 <li className="list-unstyled">
                                     <h6>Phone Number: +6666666</h6>

@@ -6,6 +6,7 @@ import KidsPage from "./KidsPage";
 import MenPage from "./MenPage";
 import WomenPage from "./WomenPage";
 import "../css/styles.css";
+import Product from "./Product";
 
 export default class Navigation extends Component {
     render() {
@@ -27,6 +28,7 @@ export default class Navigation extends Component {
                     <Route exact path="/">
                         <Home />
                     </Route>
+                    <Route exact path="/product/:id" render={(props)=><Product {...props}/>}/>
                     <Route exact path="/men">
                         <MenPage />
                     </Route>

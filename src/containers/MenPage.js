@@ -17,9 +17,9 @@ class MenPage extends Component {
                 <Container style={{ marginTop: "2%" }} fluid>
                     <Row>
                         <Col sm={2}>
-                            {this.props.categories ?
+                            {this.props.categories && this.props.menProducts ?
                             <div>
-                                <SideMenu categories={this.props.categories} />
+                                <SideMenu categories={this.props.categories} values={this.props.menProducts} />
                             </div>
                             :<div></div>
                         }
