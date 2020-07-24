@@ -1,7 +1,10 @@
-import React from "react";
-import { Dropdown, Button, Form } from "react-bootstrap";
+import React, {useState} from "react";
+import { Dropdown, Button, Form, Alert } from "react-bootstrap";
+
+
 
 const ProductDetails = (props) => {
+    const [clicked,setClicked] = useState(false);
     return (
         <div>
             <h3 style={{ marginBottom: "2%" }}>{props.name}</h3>
@@ -12,9 +15,9 @@ const ProductDetails = (props) => {
                     Size
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item href="">S</Dropdown.Item>
-                    <Dropdown.Item href="">M</Dropdown.Item>
-                    <Dropdown.Item href="">L</Dropdown.Item>
+                    <Dropdown.Item >S</Dropdown.Item>
+                    <Dropdown.Item >M</Dropdown.Item>
+                    <Dropdown.Item >L</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <div style={{ marginBottom: "2%" }}>
@@ -23,7 +26,11 @@ const ProductDetails = (props) => {
                         <Form.Control placeholder="1" type="text" />
                     </Form.Group>
                 </Form>
-                <Button onClick={()=>console.log("clicked")} variant="grey lighten-2">Add To Basket</Button>
+                <Button onClick={()=>setClicked(true)} variant="grey lighten-2">Add To Basket</Button>
+                {clicked?
+                <Alert variant="success">Successfully added product to cart</Alert>
+                :<div></div>
+            }
             </div>
             <p>{props.description}</p>
         </div>

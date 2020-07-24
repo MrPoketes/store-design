@@ -31,7 +31,7 @@ class Product extends Component {
                     <Container fluid>
                         <Row>
                             <Col>
-                                <Image style={{ width: "500px", height: "700px" }} src={fixedSrc} alt="Product" />
+                                <Image style={{ width: "31.25rem", height: "43.75rem" }} src={fixedSrc} alt="Product" />
                             </Col>
                             <Col>
                                 <ProductDetails name={this.props.product.name} price={this.props.product.price} description={this.props.product.description}/>
