@@ -1,49 +1,57 @@
 import React, { Component } from "react";
 import "../css/styles.css";
-import {connect} from "react-redux";
-import { fetchProductById, unmountProductById} from "../actions";
+import { Image, Col, Row, Container } from "react-bootstrap";
+import { connect } from "react-redux";
+import { fetchProductById, unmountProductById } from "../actions";
+import ProductDetails from "../components/ProductDetails";
 // Global variables
 
 let id = "";
 
-class Product extends Component{
-    constructor(props){
+class Product extends Component {
+    constructor(props) {
         super(props);
         id = this.props.match.params.id;
-        id = id.replace(":","");
+        id = id.replace(":", "");
         console.log(id);
     }
-    async componentDidMount(){
+    async componentDidMount() {
         await this.props.fetchProductById(id);
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.unmountProductById();
     }
-    render(){
-        return(
-            <div className="App">
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
-                <h1>Hello</h1>
+    render() {
+        let x = this.props.match.params.image.replace(":", "");
+        let src = `http://localhost:8081/${x}`;
+        var fixedSrc = src.replace("/\src", "");
+        return (
+            <div style={{ marginTop: "2%" }} className="App">
+                {this.props.product && this.props.product.image ?
+                    <Container fluid>
+                        <Row>
+                            <Col>
+                                <Image style={{ width: "500px", height: "700px" }} src={fixedSrc} alt="Product" />
+                            </Col>
+                            <Col>
+                                <ProductDetails name={this.props.product.name} price={this.props.product.price} description={this.props.product.description}/>
+                        </Col>
+                        </Row>
+                    </Container> :
+                    <div></div>
+                }
             </div>
         )
     }
 }
 const mapStateToProps = (state) => {
     return {
-      product: state.products.product
+        product: state.products.product
     }
-  };
-  const mapDispatchToProps = {
+};
+const mapDispatchToProps = {
     fetchProductById,
     unmountProductById,
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Product);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

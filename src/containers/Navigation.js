@@ -28,7 +28,7 @@ export default class Navigation extends Component {
                     <Route exact path="/">
                         <Home />
                     </Route>
-                    <Route exact path="/product/:id" render={(props)=><Product {...props}/>}/>
+                    <Route exact path="/product/:id/:image" render={(props)=><Product {...props}/>}/>
                     <Route exact path="/men">
                         <MenPage />
                     </Route>

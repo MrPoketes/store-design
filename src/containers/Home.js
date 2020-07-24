@@ -4,7 +4,7 @@ import ImageShowcase from "../components/ImageShowcase";
 import ProductShowcase from "../components/ProductShowcase";
 import { fetchNewProducts } from "../actions";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Home extends Component {
   async componentDidMount() {
@@ -24,7 +24,7 @@ class Home extends Component {
             {this.props.newProducts !== null ?
               <div>
                 {this.props.newProducts.map((data, i) =>
-                  <NavLink key={i} exact to={`/product/:${data._id}`}><ProductShowcase key={i} id={data._id} name={data.name} price={data.price} image={data.image} /></NavLink>
+                  <NavLink key={i} exact to={`/product/:${data._id}/:${data.image}`}><ProductShowcase key={i} id={data._id} name={data.name} price={data.price} image={data.image} /></NavLink>
                 )}
               </div>
               : <div></div>
@@ -38,7 +38,9 @@ class Home extends Component {
             {this.props.newProducts !== null ?
               <div>
                 {this.props.newProducts.map((data, i) =>
+                <NavLink key={i} exact to={`/product/:${data._id}/:${data.image}`}>
                   <ProductShowcase key={i} id={data._id} name={data.name} price={data.price} image={data.image} />
+                  </NavLink>
                 )}
               </div>
               : <div></div>
