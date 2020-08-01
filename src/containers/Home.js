@@ -6,21 +6,25 @@ import { fetchNewProducts } from "../actions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Alert } from "react-bootstrap";
+import config from "../config";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
     };
   }
   async componentDidMount() {
     if (this.props.user && this.props.user.data === "Successfully Authenticated") {
-      this.setState({ visible: true }, () => {
-        window.setTimeout(() => {
-          this.setState({ visible: false })
-        }, 2000)
-      })
+      if (config.popup) {
+        this.setState({ visible: true }, () => {
+          window.setTimeout(() => {
+            this.setState({ visible: false })
+          }, 2000)
+        })
+        config.popup = false;
+      }
     }
     if (this.props.newProducts === null) {
       await this.props.fetchNewProducts();

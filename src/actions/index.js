@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+// Product actions
+
 export const fetchProducts = () => (dispatch) => {
     fetch('http://localhost:8081/api/products/')
         .then(res => res.json())
@@ -45,6 +47,7 @@ export const fetchProductById = (id) => (dispatch) => {
                 payload: data
             }))
 }
+
 // Authentication
 
 export const loginUser = (logInUsername, logInPassword) => (dispatch) => {
@@ -73,11 +76,42 @@ export const registerUser = (registerUsername, registerPassword) => (dispatch) =
             password: registerPassword,
         }
     })
-        .then(data=>
+        .then(data =>
             dispatch({
-                type:"REGISTER_USER",
-                payload:data
+                type: "REGISTER_USER",
+                payload: data
             }))
+}
+
+// Basket
+
+export const getBasket = (username) => (dispatch) => {
+    fetch(`http://localhost:8081/basket/getbasket/${username}`)
+    .then(res=>res.json())
+    .then(data =>
+        dispatch({
+            type:"GET_BASKET",
+            payload:data
+        }))
+}
+export const addToBasket = (username,itemId,quantity,price) => (dispatch) =>{
+    axios({
+        method: "POST",
+        withCredentials: true,
+        url: "http://localhost:8081/basket/",
+        data:{
+            username:username,
+            itemId:itemId,
+            quantity:quantity,
+            price:price
+        }
+    })
+        .then(data => 
+            dispatch({
+                type: "ADD_TO_BASKET",
+                payload:data
+            })
+            )
 }
 // For unmounting 
 export const unmountProductById = () => (dispatch) => {

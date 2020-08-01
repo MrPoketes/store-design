@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../css/styles.css";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Form } from "react-bootstrap";
 import { BrowserRouter as Router, NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import Home from "./Home";
 import MenPage from "./MenPage";
@@ -26,10 +26,9 @@ class Navigation extends Component {
                             <NavLink className="nav-link" exact to="/women">Women</NavLink>
                         </Nav>
                     </Navbar.Collapse>
-                    <Navbar.Collapse style={{ margin: 0 }} id="justify-content-end">
-                        <Nav>
-                            <NavLink className="nav-link" exact to="/basket"><i className="fas fa-shopping-basket"></i></NavLink>
-                            {/* <NavLink className="nav-link" exact to="/user/login"><i className="fas fa-user"></i></NavLink> */}
+                    <Navbar.Collapse style={{ margin: 0 }} className="w-100 order-3 dual-collapse2" id="justify-content-end">
+                        <Nav className="ml-auto">
+                            <NavLink className="nav-link " exact to="/basket"><i className="fas fa-shopping-basket"></i></NavLink>
                             {this.props.userLogin && this.props.userLogin.data === "Successfully Authenticated" ?
                                 <NavLink className="nav-link" exact to="/user"><i className="fas fa-user"></i></NavLink>
                                 : <NavLink className="nav-link" exact to="/user/login"><i className="fas fa-user"></i></NavLink>
