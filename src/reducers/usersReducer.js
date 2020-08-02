@@ -8,13 +8,19 @@ const usersReducer = (state = initialState, action) => {
         case "LOGIN_USER":
             return {
                 ...state,
-                userLogin: action.payload
+                userLogin: action.payload,
             };
         case "REGISTER_USER":
             return {
                 ...state,
                 userRegister: action.payload
             };
+        case "UNMOUNT_USER":
+            return {
+                ...state,
+                userLogin: null,
+                userRegister: null,
+            }
         default:
             return state
     }

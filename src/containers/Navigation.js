@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../css/styles.css";
-import { Navbar, Nav, Form } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { BrowserRouter as Router, NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import Home from "./Home";
 import MenPage from "./MenPage";
@@ -13,6 +13,18 @@ import { connect } from "react-redux";
 import UserPage from "./UserPage";
 
 class Navigation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            logedOut: false
+        }
+        this.handleLogOut = this.handleLogOut.bind(this);
+    }
+    handleLogOut() {
+        this.setState({
+            logedOut: true
+        });
+    }
     render() {
         return (
             <Router>
@@ -49,13 +61,8 @@ class Navigation extends Component {
                     </Route>
                     <Route exact path="/user/login" render={
                         () => {
-                            if (this.props.userLogin) {
-                                if (this.props.userLogin.data === "Successfully Authenticated") {
-                                    return <Redirect to="/" />
-                                }
-                                else {
-                                    return <Authentication />
-                                }
+                            if (this.props.userLogin && this.props.userLogin.data === "Successfully Authenticated") {
+                                return <Redirect to="/" />
                             }
                             else {
                                 return <Authentication />
@@ -82,9 +89,16 @@ class Navigation extends Component {
                             }
                         }
                     } />
-                    <Route exact path="/user">
-                        <UserPage />
-                    </Route>
+                    <Route exact path="/user" render={
+                        () => {
+                            if (this.state.logedOut) {
+                                return <Redirect to="/" />
+                            }
+                            else {
+                                return <UserPage logout={this.handleLogOut} />
+                            }
+                        }
+                    } />
                     <Route render={
                         () => <h3 style={{ marginTop: "2%", textAlign: "center" }}>Page not found</h3>
                     } />
@@ -97,7 +111,7 @@ const mapStateToProps = (state) => {
     return {
         removedAll: state.basket.removedAll,
         userLogin: state.user.userLogin,
-        userRegister: state.user.userRegister
+        userRegister: state.user.userRegister,
     }
 }
 export default connect(mapStateToProps)(Navigation);

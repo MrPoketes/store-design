@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/styles.css';
 import ImageShowcase from "../components/ImageShowcase";
 import ProductShowcase from "../components/ProductShowcase";
-import { fetchNewProducts, unmountRemoveEverything } from "../actions";
+import { fetchNewProducts, unmountRemoveEverything, unmountUser } from "../actions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Alert } from "react-bootstrap";
@@ -13,7 +13,8 @@ class Home extends Component {
     super(props);
     this.state = {
       visible: false,
-      alertConfirm: false
+      alertConfirm: false,
+      alertLogedout: false,
     };
   }
   async componentDidMount() {
@@ -38,6 +39,15 @@ class Home extends Component {
         await this.props.unmountRemoveEverything();
       }
     }
+    if (config.logedOut) {
+      this.props.unmountUser();
+      this.setState({ alertLogedout: true }, () => {
+        window.setTimeout(() => {
+          this.setState({ alertLogedout: false })
+        }, 2000)
+      })
+      config.logedOut = false;
+    }
     if (this.props.newProducts === null) {
       await this.props.fetchNewProducts();
     }
@@ -56,7 +66,12 @@ class Home extends Component {
             : <div></div>
           }
           {this.state.alertConfirm ?
-            <Alert style={{ position: "absolute", zIndex: 1, width: "100%" }} variant="success">Thank you for shopping</Alert> : <div></div>
+            <Alert style={{ position: "absolute", zIndex: 1, width: "100%" }} variant="success">Thank you for shopping</Alert>
+            : <div></div>
+          }
+          {this.state.alertLogedout ?
+            <Alert style={{ position: "absolute", zIndex: 1, width: "100%" }} variant="success">Successfully Loged out</Alert>
+            : <div></div>
           }
           <ImageShowcase />
         </div>
@@ -103,7 +118,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   fetchNewProducts,
-  unmountRemoveEverything
+  unmountRemoveEverything,
+  unmountUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
