@@ -1,6 +1,7 @@
 const axios = require('axios');
+import config from "../config";
 
-const url = "http://localhost:8081";
+const url = config.url;
 
 // Product actions
 
