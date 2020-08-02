@@ -24,17 +24,17 @@ const productsReducer = (state = initialState, action) => {
                 categories: action.payload
             }
         case "FETCH_PRODUCTS_BY_GENDER":
-            return{
+            return {
                 ...state,
                 genderProducts: action.payload
             }
         case "FETCH_PRODUCT_BY_ID":
-            return{
+            return {
                 ...state,
                 product: action.payload
             }
         case "UNMOUNT_PRODUCT_BY_ID":
-            return{
+            return {
                 ...state,
                 product: null
             }

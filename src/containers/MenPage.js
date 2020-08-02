@@ -35,7 +35,6 @@ class MenPage extends Component {
                                     )}
                                 </div>
                                 : <div></div>
-
                             }
                         </Col>
                     </Row>

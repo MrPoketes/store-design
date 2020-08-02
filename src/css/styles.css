@@ -8,3 +8,13 @@
 .side-line{
   border-top:1px solid black;
 }
+.plus{
+  position: relative;
+  right:3%;
+  bottom:0.5rem;
+}
+.minus{
+  position: relative;
+  right: 10%;
+  top:1rem;
+}

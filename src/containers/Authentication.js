@@ -28,16 +28,21 @@ class Authentication extends Component {
     }
     render() {
         return (
-            <div style={{ marginTop: "2%" }} className="App">
+            <div style={{ textAlign: "center" }}>
                 {this.state.visible ?
                     <Alert variant="success">Successfully Registered</Alert>
                     : <div></div>
                 }
-                <h2>Login</h2>
-                <hr style={{ marginBottom: "2%" }} className="line" />
-                <LogInForm handleClick={this.handleLogin} />
-                <h3>Don't have an account?</h3>
-                <NavLink exact to="/user/register"><h4>Register Here</h4></NavLink>
+                {this.props.userLogin && this.props.userLogin.data === "No User Found" ?
+                    <Alert variant="danger">User not found. Please check your username and/or password</Alert> : <div></div>
+                }
+                <div style={{ marginTop: "2%" }} className="App">
+                    <h2>Login</h2>
+                    <hr style={{ marginBottom: "2%" }} className="line" />
+                    <LogInForm handleClick={this.handleLogin} />
+                    <h3>Don't have an account?</h3>
+                    <NavLink exact to="/user/register"><h4>Register Here</h4></NavLink>
+                </div>
             </div>
         )
     }

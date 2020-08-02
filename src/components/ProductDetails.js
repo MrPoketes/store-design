@@ -15,9 +15,6 @@ const ProductDetails = (props) => {
             setValue(placeholder - 1);
         }
     }
-    const handleSubmit = () => {
-
-    }
     return (
         <div>
             <h3 style={{ marginBottom: "2%" }}>{props.name}</h3>
@@ -51,8 +48,8 @@ const ProductDetails = (props) => {
                             <div>
                                 {quantity.current !== 0 ?
                                     <Alert variant="success">Successfully added product to cart</Alert>
-                                    :<Alert variant="danger">Please select a valid quantity</Alert>
-                            }
+                                    : <Alert variant="danger">Please select a valid quantity</Alert>
+                                }
                             </div> :
                             <Alert variant="danger">Please First Log In</Alert>
                         }

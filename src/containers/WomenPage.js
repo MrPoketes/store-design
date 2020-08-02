@@ -5,7 +5,7 @@ import SideMenu from "../components/SideMenu";
 import ProductShowcase from "../components/ProductShowcase";
 import { connect } from "react-redux";
 import { fetchByGender, fetchCategories } from "../actions";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class WomenPage extends Component {
     async componentDidMount() {
@@ -18,7 +18,7 @@ class WomenPage extends Component {
                 <Container style={{ marginTop: "2%" }} fluid>
                     <Row>
                         <Col sm={2}>
-                            {this.props.categories!==null && this.props.womenProducts!==null ?
+                            {this.props.categories !== null && this.props.womenProducts !== null ?
                                 <div>
                                     <SideMenu categories={this.props.categories} values={this.props.womenProducts} />
                                 </div>
@@ -29,9 +29,9 @@ class WomenPage extends Component {
                             {this.props.womenProducts ?
                                 <div>
                                     {this.props.womenProducts.map((data, i) =>
-                                    <NavLink key={i} exact to={`/product/:${data._id}/:${data.image}`}>
-                                        <ProductShowcase key={i} id={data._id} name={data.name} price={data.price} image={data.image} />
-                                    </NavLink>
+                                        <NavLink key={i} exact to={`/product/:${data._id}/:${data.image}`}>
+                                            <ProductShowcase key={i} id={data._id} name={data.name} price={data.price} image={data.image} />
+                                        </NavLink>
                                     )}
                                 </div>
                                 : <div></div>

@@ -1,4 +1,5 @@
 let counterForAlert = {
-    popup:true
+    popup: true,
+    confirm: true,
 };
 export default counterForAlert;

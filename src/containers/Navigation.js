@@ -72,11 +72,18 @@ class Navigation extends Component {
                             }
                         }
                     } />
-                    <Route exact path="/basket">
-                        <Basket />
-                    </Route>
+                    <Route exact path="/basket" render={
+                        () => {
+                            if (this.props.removedAll && this.props.removedAll.data === "Removed Successfully") {
+                                return <Redirect to="/" />
+                            }
+                            else {
+                                return <Basket />
+                            }
+                        }
+                    } />
                     <Route exact path="/user">
-                        <UserPage/>
+                        <UserPage />
                     </Route>
                     <Route render={
                         () => <h3 style={{ marginTop: "2%", textAlign: "center" }}>Page not found</h3>
@@ -88,6 +95,7 @@ class Navigation extends Component {
 }
 const mapStateToProps = (state) => {
     return {
+        removedAll: state.basket.removedAll,
         userLogin: state.user.userLogin,
         userRegister: state.user.userRegister
     }

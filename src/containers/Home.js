@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/styles.css';
 import ImageShowcase from "../components/ImageShowcase";
 import ProductShowcase from "../components/ProductShowcase";
-import { fetchNewProducts } from "../actions";
+import { fetchNewProducts, unmountRemoveEverything } from "../actions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Alert } from "react-bootstrap";
@@ -13,6 +13,7 @@ class Home extends Component {
     super(props);
     this.state = {
       visible: false,
+      alertConfirm: false
     };
   }
   async componentDidMount() {
@@ -26,18 +27,36 @@ class Home extends Component {
         config.popup = false;
       }
     }
+    if (this.props.removed && this.props.removed.data === "Removed Successfully") {
+      if (config.confirm) {
+        this.setState({ alertConfirm: true }, () => {
+          window.setTimeout(() => {
+            this.setState({ alertConfirm: false })
+          }, 2000)
+        })
+        config.confirm = false;
+        await this.props.unmountRemoveEverything();
+      }
+    }
     if (this.props.newProducts === null) {
       await this.props.fetchNewProducts();
     }
   }
+  componentWillUnmount() {
+    this.setState({
+      visible: false
+    })
+  }
   render() {
     return (
       <div className="App">
-        {/* The carousel  TODO : add the images for the carousel to a database*/}
         <div>
           {this.state.visible ?
             <Alert style={{ position: "absolute", zIndex: 1, width: "100%" }} variant="success">Successfully Loged in</Alert>
             : <div></div>
+          }
+          {this.state.alertConfirm ?
+            <Alert style={{ position: "absolute", zIndex: 1, width: "100%" }} variant="success">Thank you for shopping</Alert> : <div></div>
           }
           <ImageShowcase />
         </div>
@@ -78,11 +97,13 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     newProducts: state.products.newProducts,
-    user: state.user.userLogin
+    user: state.user.userLogin,
+    removed: state.basket.removedAll,
   }
 };
 const mapDispatchToProps = {
   fetchNewProducts,
+  unmountRemoveEverything
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

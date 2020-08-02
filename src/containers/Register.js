@@ -3,6 +3,7 @@ import "../css/styles.css";
 import LogInForm from "../components/LogInForm";
 import { connect } from "react-redux";
 import { registerUser } from "../actions";
+import { Alert } from "react-bootstrap";
 
 class Register extends Component {
     constructor(props) {
@@ -17,10 +18,16 @@ class Register extends Component {
     }
     render() {
         return (
-            <div style={{ marginTop: "2%" }} className="App">
-                <h2>Register</h2>
-                <hr style={{ marginBottom: "2%" }} className="line" />
-                <LogInForm handleClick={this.handleRegister}/>
+            <div style={{ textAlign: "center" }}>
+                {this.props.user && this.props.user.data === "User Already Exists" ?
+                    <Alert variant="danger">This user already exists</Alert>
+                    : <div></div>
+                }
+                <div style={{ marginTop: "2%" }} className="App">
+                    <h2>Register</h2>
+                    <hr style={{ marginBottom: "2%" }} className="line" />
+                    <LogInForm handleClick={this.handleRegister} />
+                </div>
             </div>
         )
     }

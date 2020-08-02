@@ -1,11 +1,11 @@
 import React from "react";
-import {Figure} from "react-bootstrap";
+import { Figure } from "react-bootstrap";
 
 const ProductShowcase = (props) => {
     var src = `http://localhost:8081/${props.image}`;
-    var fixedSrc = src.replace("/\src","");
+    var fixedSrc = src.replace("/\src", "");
     return (
-        <Figure style={{marginRight:"3%"}}>
+        <Figure style={{ marginRight: "3%" }}>
             <Figure.Image
                 width={250}
                 height={280}

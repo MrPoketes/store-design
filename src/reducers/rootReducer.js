@@ -6,5 +6,5 @@ import basketReducer from "./basketReducer";
 export default combineReducers({
     products: productsReducer,
     user: usersReducer,
-    basket:basketReducer
+    basket: basketReducer
 });

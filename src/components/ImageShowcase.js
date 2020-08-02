@@ -1,7 +1,7 @@
 import React from "react";
 import pic2 from "../images/home-pics/pic2.jpg";
 import pic3 from "../images/home-pics/pic3.jpg";
-import {Carousel} from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 const ImageShowcase = () => {
     return (
         <div>
