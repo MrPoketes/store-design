@@ -1,5 +1,5 @@
-const axios = require('axios');
 import config from "../config";
+const axios = require('axios');
 
 const url = config.url;
 
