@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const url = process.env.URL;
+const url = process.env.URL || "http://localhost:8081";
 
 // Product actions
 
