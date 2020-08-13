@@ -1,8 +1,8 @@
 import config from "../config";
 const axios = require('axios');
 
-const url = config.url;
-
+// const url = config.url;
+const url = process.env.URL || "http://localhost:8081"
 // Product actions
 
 export const fetchProducts = () => (dispatch) => {
