@@ -1,12 +1,11 @@
 const axios = require('axios');
 
 const url = process.env.REACT_APP_URL || "http://localhost:8081";
-console.log(process.env.URL);
-
+const cors = "https://cors-anywhere.herokuapp.com/";
 // Product actions
 
 export const fetchProducts = () => (dispatch) => {
-    fetch(`${url}/api/products/`)
+    fetch(`${cors}${url}/api/products/`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -15,7 +14,7 @@ export const fetchProducts = () => (dispatch) => {
             }));
 };
 export const fetchNewProducts = () => (dispatch) => {
-    fetch(`${url}/api/products/getNew/true`)
+    fetch(`${cors}${url}/api/products/getNew/true`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -24,7 +23,7 @@ export const fetchNewProducts = () => (dispatch) => {
             }))
 }
 export const fetchCategories = (gender) => (dispatch) => {
-    fetch(`${url}/api/products/categories/${gender}`)
+    fetch(`${cors}${url}/api/products/categories/${gender}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -33,7 +32,7 @@ export const fetchCategories = (gender) => (dispatch) => {
             }))
 }
 export const fetchByGender = (gender) => (dispatch) => {
-    fetch(`${url}/api/products/get/${gender}`)
+    fetch(`${cors}${url}/api/products/get/${gender}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -42,7 +41,7 @@ export const fetchByGender = (gender) => (dispatch) => {
             }))
 }
 export const fetchProductById = (id) => (dispatch) => {
-    fetch(`${url}/api/products/${id}`)
+    fetch(`${cors}${url}/api/products/${id}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -57,7 +56,7 @@ export const loginUser = (logInUsername, logInPassword) => (dispatch) => {
     axios({
         method: "POST",
         withCredentials: true,
-        url: `${url}/auth/login`,
+        url: `${cors}${url}/auth/login`,
         data: {
             username: logInUsername,
             password: logInPassword,
@@ -73,7 +72,7 @@ export const registerUser = (registerUsername, registerPassword) => (dispatch) =
     axios({
         method: "POST",
         withCredentials: true,
-        url: `${url}/auth/register`,
+        url: `${cors}${url}/auth/register`,
         data: {
             username: registerUsername,
             password: registerPassword,
@@ -89,7 +88,7 @@ export const registerUser = (registerUsername, registerPassword) => (dispatch) =
 // Basket
 
 export const getBasket = (username) => (dispatch) => {
-    fetch(`${url}/basket/getbasket/${username}`)
+    fetch(`${cors}${url}/basket/getbasket/${username}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -101,7 +100,7 @@ export const addToBasket = (username, itemId, quantity, price, name) => (dispatc
     axios({
         method: "POST",
         withCredentials: true,
-        url: `${url}/basket/`,
+        url: `${cors}${url}/basket/`,
         data: {
             username: username,
             itemId: itemId,
@@ -120,7 +119,7 @@ export const removeEverything = (username) => (dispatch) => {
     axios({
         method: "DELETE",
         withCredentials: true,
-        url: `${url}/basket/`,
+        url: `${cors}${url}/basket/`,
         data: {
             username: username
         }
@@ -135,7 +134,7 @@ export const removeOne = (username, itemId) => (dispatch) => {
     axios({
         method: "DELETE",
         withCredentials: true,
-        url: `${url}/basket/deleteOne`,
+        url: `${cors}${url}/basket/deleteOne`,
         data: {
             username: username,
             itemId: itemId
@@ -151,7 +150,7 @@ export const updateBasket = (username, itemId, quantity) => (dispatch) => {
     axios({
         method: "POST",
         withCredentials: true,
-        url: `${url}/basket/updateBasket`,
+        url: `${cors}${url}/basket/updateBasket`,
         data: {
             username: username,
             itemId: itemId,
