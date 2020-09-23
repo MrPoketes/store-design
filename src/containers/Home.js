@@ -6,7 +6,7 @@ import { fetchNewProducts, unmountRemoveEverything, unmountUser } from "../actio
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-import config from "../config";
+import config from "../config/index.js";
 
 class Home extends Component {
   constructor(props) {

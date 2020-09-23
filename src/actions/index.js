@@ -1,7 +1,8 @@
 const axios = require('axios');
 
 const url = process.env.REACT_APP_URL || "http://localhost:8081";
-const cors = "https://cors-anywhere.herokuapp.com/";
+// const cors = "https://cors-anywhere.herokuapp.com/";
+const cors = "";
 // Product actions
 
 export const fetchProducts = () => (dispatch) => {
