@@ -1,12 +1,11 @@
 const axios = require('axios');
 
-const url = process.env.REACT_APP_URL || "http://localhost:8081";
-// const cors = "https://cors-anywhere.herokuapp.com/";
-const cors = "";
+const url = "https://store-design-backend.herokuapp.com" || "http://localhost:8081";
+
 // Product actions
 
 export const fetchProducts = () => (dispatch) => {
-    fetch(`${cors}${url}/api/products/`)
+    fetch(`${url}/api/products/`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -15,7 +14,7 @@ export const fetchProducts = () => (dispatch) => {
             }));
 };
 export const fetchNewProducts = () => (dispatch) => {
-    fetch(`${cors}${url}/api/products/getNew/true`)
+    fetch(`${url}/api/products/getNew/true`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -24,7 +23,7 @@ export const fetchNewProducts = () => (dispatch) => {
             }))
 }
 export const fetchCategories = (gender) => (dispatch) => {
-    fetch(`${cors}${url}/api/products/categories/${gender}`)
+    fetch(`${url}/api/products/categories/${gender}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -33,7 +32,7 @@ export const fetchCategories = (gender) => (dispatch) => {
             }))
 }
 export const fetchByGender = (gender) => (dispatch) => {
-    fetch(`${cors}${url}/api/products/get/${gender}`)
+    fetch(`${url}/api/products/get/${gender}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -42,7 +41,7 @@ export const fetchByGender = (gender) => (dispatch) => {
             }))
 }
 export const fetchProductById = (id) => (dispatch) => {
-    fetch(`${cors}${url}/api/products/${id}`)
+    fetch(`${url}/api/products/${id}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
