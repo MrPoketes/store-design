@@ -12,7 +12,7 @@ ReactDOM.render(
   <div>
     <Provider store={store}>
       <Navigation />
-      {/* <Footer /> */}
+      <Footer />
     </Provider>
   </div>,
   document.getElementById('root')

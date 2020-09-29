@@ -32,16 +32,13 @@ class Product extends Component {
         }
     }
     render() {
-        let x = this.props.match.params.image.replace(":", "");
-        let src = `http://localhost:8081/${x}`;
-        var fixedSrc = src.replace("/\src", "");
         return (
             <div style={{ marginTop: "2%" }} className="App">
                 {this.props.product && this.props.product.image ?
                     <Container fluid>
                         <Row>
                             <Col>
-                                <Image style={{ width: "31.25rem", height: "43.75rem" }} src={fixedSrc} alt="Product" />
+                                <Image style={{ width: "30.25rem", height: "41.75rem" }} src={this.props.product.image} alt="Product" />
                             </Col>
                             <Col>
                                 <ProductDetails userData={username} handleAdd={this.handleAdd} name={this.props.product.name} price={this.props.product.price} description={this.props.product.description} />

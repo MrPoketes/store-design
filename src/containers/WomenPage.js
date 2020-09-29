@@ -29,7 +29,7 @@ class WomenPage extends Component {
                             {this.props.womenProducts ?
                                 <div>
                                     {this.props.womenProducts.map((data, i) =>
-                                        <NavLink key={i} exact to={`/product/:${data._id}/:${data.image}`}>
+                                        <NavLink key={i} exact to={`/product/:${data._id}`}>
                                             <ProductShowcase key={i} id={data._id} name={data.name} price={data.price} image={data.image} />
                                         </NavLink>
                                     )}
