@@ -1,8 +1,10 @@
 import React from "react";
 import { Figure } from "react-bootstrap";
 
+var url = "https://store-design-backend.herokuapp.com/" || "http://localhost:8081/";
+
 const ProductShowcase = (props) => {
-    var src = `http://localhost:8081/${props.image}`;
+    var src = `${url}${props.image}`;
     var fixedSrc = src.replace("/\src", "");
     return (
         <Figure style={{ marginRight: "3%" }}>
