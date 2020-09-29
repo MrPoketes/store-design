@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "../css/styles.css";
 import { connect } from "react-redux";
 import { Button } from "react-bootstrap";
-import config from "../config";
+import config from "../config/index.js";
+import {unmountLogin} from "../actions";
 // Global variables
 var username = "";
 
@@ -14,10 +15,9 @@ class UserPage extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
-    handleClick() {
+    async handleClick() {
         config.popup = true;
-        config.logedOut = true;
-        this.props.logout();
+        await this.props.unmountLogin();
     }
     render() {
         return (
@@ -39,4 +39,7 @@ const mapStateToProps = (state) => {
         user: state.user.userLogin,
     }
 }
-export default connect(mapStateToProps)(UserPage);
+const mapDispatchToProps = {
+    unmountLogin
+  };
+export default connect(mapStateToProps,mapDispatchToProps)(UserPage);

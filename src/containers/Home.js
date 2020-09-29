@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/styles.css';
 import ImageShowcase from "../components/ImageShowcase";
 import ProductShowcase from "../components/ProductShowcase";
-import { fetchNewProducts, unmountRemoveEverything, unmountUser } from "../actions";
+import { fetchNewProducts, unmountRemoveEverything, unmountUser} from "../actions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Alert } from "react-bootstrap";
@@ -39,14 +39,13 @@ class Home extends Component {
         await this.props.unmountRemoveEverything();
       }
     }
-    if (config.logedOut) {
-      this.props.unmountUser();
+    if (this.props.user==="Loged out") {
+      await this.props.unmountUser();
       this.setState({ alertLogedout: true }, () => {
         window.setTimeout(() => {
           this.setState({ alertLogedout: false })
         }, 2000)
       })
-      config.logedOut = false;
     }
     if (this.props.newProducts === null) {
       await this.props.fetchNewProducts();

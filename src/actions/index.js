@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 const url = "https://store-design-backend.herokuapp.com" || "http://localhost:8081";
-
 // Product actions
 
 export const fetchProducts = () => (dispatch) => {
@@ -183,5 +182,10 @@ export const unmountBasket = () => (dispatch) => {
 export const unmountUser = () => (dispatch) => {
     dispatch({
         type: "UNMOUNT_USER"
+    })
+}
+export const unmountLogin = () => (dispatch) => {
+    dispatch({
+        type: "UNMOUNT_LOGIN"
     })
 }

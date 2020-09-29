@@ -13,18 +13,6 @@ import { connect } from "react-redux";
 import UserPage from "./UserPage";
 
 class Navigation extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            logedOut: false
-        }
-        this.handleLogOut = this.handleLogOut.bind(this);
-    }
-    handleLogOut() {
-        this.setState({
-            logedOut: true
-        });
-    }
     render() {
         return (
             <Router>
@@ -91,11 +79,11 @@ class Navigation extends Component {
                     } />
                     <Route exact path="/user" render={
                         () => {
-                            if (this.state.logedOut) {
+                            if (this.props.userLogin==="Loged out") {
                                 return <Redirect to="/" />
                             }
                             else {
-                                return <UserPage logout={this.handleLogOut} />
+                                return <UserPage/>
                             }
                         }
                     } />

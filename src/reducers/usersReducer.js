@@ -21,6 +21,11 @@ const usersReducer = (state = initialState, action) => {
                 userLogin: null,
                 userRegister: null,
             }
+        case "UNMOUNT_LOGIN":
+            return {
+                ...state,
+                userLogin: "Loged out"
+            }
         default:
             return state
     }

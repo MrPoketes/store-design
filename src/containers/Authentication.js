@@ -40,8 +40,13 @@ class Authentication extends Component {
                     <h2>Login</h2>
                     <hr style={{ marginBottom: "2%" }} className="line" />
                     <LogInForm handleClick={this.handleLogin} />
-                    <h3>Don't have an account?</h3>
-                    <NavLink exact to="/user/register"><h4>Register Here</h4></NavLink>
+                    {this.props.userRegister !== null && this.props.userRegister.data === "User Created" ?
+                        <div></div>
+                        : <div>
+                            <h3>Don't have an account?</h3>
+                            <NavLink exact to="/user/register"><h4>Register Here</h4></NavLink>
+                        </div>
+                    }
                 </div>
             </div>
         )
