@@ -1,7 +1,7 @@
 import React from "react";
 import { Figure } from "react-bootstrap";
 
-var url = "https://store-design-backend.herokuapp.com/" || "http://localhost:8081/";
+var url = "https://store-design-backend.herokuapp.com/";
 
 const ProductShowcase = (props) => {
     var src = `${url}${props.image}`;
