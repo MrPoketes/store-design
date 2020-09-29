@@ -15,6 +15,7 @@ class UserPage extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick() {
+        config.popup = true;
         config.logedOut = true;
         this.props.logout();
     }

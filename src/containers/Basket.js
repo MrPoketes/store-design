@@ -5,6 +5,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import { getBasket, removeEverything, removeOne, updateBasket, unmountBasket } from "../actions";
 import CheckoutShowcase from "../components/CheckoutShowcase";
 import Checkout from "../components/Checkout";
+import config from "../config/index.js";
 
 // Global variables
 let username = "";
@@ -24,6 +25,7 @@ class Basket extends Component {
         }
     }
     async handleRemove() {
+        config.confirm = true;
         await this.props.removeEverything(username);
     }
     async changeQuantity(itemId, quantity) {
